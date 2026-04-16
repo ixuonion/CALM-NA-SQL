@@ -103,3 +103,87 @@ sum(
     else 0
   end
 )/sum(`payment_1d`)
+
+---- Products
+-- Gmax/Non-Gmax
+CASE WHEN [Shop Ads Product Type] like '%ROI2%' THEN [Shop Ads Product Type] ELSE 'ROI1' END
+
+
+---- Promotion US
+-- Promotion Calendar US
+
+
+-- Promotion Daily&Promotion&Others US
+
+
+-- Daily VS Promotion US
+
+
+---- Promotion SEA
+-- Promotion Calendar SEA
+
+
+-- Promotion Daily&Promotion&Others SEA
+
+
+-- Daily VS Promotion SEA
+
+
+------ Shop M10n GMV Max Session Stat(Adv timezone,TikTok&Pangle&Toko)
+---- Sales Team Breakdown
+-- SEA/US-NA/SEA/CNOB/KROB/SMB/Others
+case
+  when [operation_region]='US' then (
+    case
+      when [owner_gbs_direct_first_split_sea]='NA' then 'ENT-KA'
+      when [owner_gbs_direct_first_split_sea] in('CNOB') then 'CNOB'
+      when [owner_gbs_direct_first_split_sea] in('KR') then 'KROB'
+      when [owner_gbs_direct_first_split_sea]='SMB' then 'SMB'
+      else 'Others'
+    end
+  )
+  when [operation_region]='SEA' then (
+    case
+      when [owner_gbs_direct_first_split_sea]='SMB' then 'SMB'
+      when [owner_gbs_direct_first_split_sea]='CNOB' then 'CNOB'
+      when [owner_gbs_direct_first_split_sea] in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'ENT'
+      else 'Others'
+    end
+  )
+end
+
+------  [AC,Joined] Product Commission Setup (UTC0, Global)
+---- Sales Team Breakdown
+-- SEA/US-NA/SEA/CNOB/KROB/SMB/Others
+case
+  when [shop_operation_region]='US' then (
+    case
+      when [Latest Direct First Country Split SEA]='NA' then 'ENT'
+      when [Latest Direct First Country Split SEA] in('CNOB') then 'CNOB'
+      when [Latest Direct First Country Split SEA] in('KR') then 'KROB'
+      when [Latest Direct First Country Split SEA]='SMB' then 'SMB'
+      else 'Others'
+    end
+  )
+  when [shop_operation_region]='SEA' then (
+    case
+      when [Latest Direct First Country Split SEA]='SMB' then 'SMB'
+      when [Latest Direct First Country Split SEA]='CNOB' then 'CNOB'
+      when [Latest Direct First Country Split SEA] in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'ENT'  
+      else 'Others'
+    end
+  )
+end
+
+---- Revenue & Cost
+-- ACA Revenue Share% (Dual Commission Enabled Only)
+sum(
+  case
+    when isNull(
+      [public_contract_affiliate_commission_set_rate]
+    )=0
+    and isNull(
+      [public_contract_ad_commission_rate]
+    )=0 then [shop_dollar_cost_1d]
+  end
+)/sum([shop_dollar_cost_1d])
