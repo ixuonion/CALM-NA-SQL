@@ -145,7 +145,7 @@ case
       )
       when shop_operation_country='BR' then (
         case
-          when this_year_owner_calm_direct_first_split_sea='LATAM' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='Brazil' then 'KA'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve & Others'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
@@ -153,7 +153,7 @@ case
       )
       when shop_operation_country='MX' then (
         case
-          when this_year_owner_calm_direct_first_split_sea='LATAM' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='Mexico' then 'KA'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve & Others'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
