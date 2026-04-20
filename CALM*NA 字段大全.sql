@@ -45,10 +45,9 @@ case
   )
   when [operation_region]='SEA' then (
     case
-      when `latest_owner_calm_direct_first_combi_apac`='SMB' then 'SMB'
-      when `latest_owner_calm_direct_first_combi_apac`='CNOB' then 'CNOB'
-      when `latest_owner_calm_direct_first_combi_apac`='APAC'
-      and `latest_owner_calm_direct_first_split_sea` in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'ENT'
+      when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
+      when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+      when `latest_owner_calm_direct_first_split_sea` in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'KA'
       else 'Others'
     end
   )
@@ -64,32 +63,32 @@ case
       )
       when shop_operation_country='GB' then (
         case
-          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
+          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'KA'
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
       )
       when shop_operation_country='BR' then (
         case
-          when `latest_owner_calm_direct_first_split_sea` in ('Brazil','ENT') then 'ENT' 
-          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
+          when `latest_owner_calm_direct_first_split_sea` in ('Brazil','KA') then 'KA' 
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
       )
       when shop_operation_country='MX' then (
         case
-          when `latest_owner_calm_direct_first_split_sea`in('Mexico','ENT') then 'ENT' 
-          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
+          when `latest_owner_calm_direct_first_split_sea`in('Mexico','KA') then 'KA' 
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
       )
       when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
-          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
+          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'KA'
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
