@@ -62,7 +62,7 @@ case
     case
       when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
       when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `latest_owner_calm_direct_first_split_sea` in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'KA'
+      when `latest_owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
       else 'Others'
     end
   )
@@ -151,7 +151,7 @@ case
     case
       when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve & Others'
       when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
-      when  this_year_owner_calm_direct_first_split_sea in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'KA'
+      when  this_year_owner_calm_direct_first_split_sea in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
       else 'Others'
     end
   )
@@ -289,7 +289,7 @@ case
     case
       when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve & Others'
       when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `owner_gbs_direct_first_split_sea` in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'KA'
+      when `owner_gbs_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
       else 'Others'
     end
   )
@@ -377,7 +377,7 @@ case
     case
       when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve & Others'
       when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `owner_calm_direct_first_split_sea` in('SG', 'ID', 'MY', 'TH', 'PH', 'VN') then 'KA'
+      when `owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
       else 'Others'
     end
   )
