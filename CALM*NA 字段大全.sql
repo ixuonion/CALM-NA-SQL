@@ -27,16 +27,31 @@ sum(
 -- PGM Rev Share & LGM Rev Share
 -- Table can not devided by content type (Delivery Type / Ads or Content Type / Organic), So if needed plz refer to table CALM_TTS_Shop Ads<>TTS Perspective Spending Dataset (utc0, full)
 ---- Sales Team Breakdown
--- CALM Region
-CASE
- WHEN shop_operation_region='EU' THEN (case when `shop_operation_country`='GB' then 'UK' when `shop_operation_country` IN ('DE','IT','ES','FR','IE') then 'EU_others' else 'Others' end)
- ELSE shop_operation_region end
+-- NAAP Region
+ CASE
+  WHEN shop_operation_region='EU' THEN (
+    case
+      when `shop_operation_country`='GB' then 'UK'
+      when `shop_operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
+      else 'Others'
+    end
+  )
+  WHEN shop_operation_region='LATAM' THEN (
+    case
+      when `shop_operation_country`='BR' then 'BR'
+      when `shop_operation_country`='MX' then 'MX'
+      else 'LATAM-Others'
+    end
+  )
+  ELSE shop_operation_region
+end
 
 -- Region Breakdown by OB/KA/SMB [Daily Latest]
 case
   when [operation_region]='US' then (
     CASE
       WHEN `latest_owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
+      WHEN `latest_owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
       WHEN `latest_owner_calm_direct_first_split_sea`='SMB' THEN 'Self Serve & Others'
       WHEN `latest_owner_calm_direct_first_split_sea` IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
       WHEN `latest_owner_calm_direct_first_split_sea`='NA-SMB' THEN 'NA-SMB'
@@ -55,7 +70,7 @@ case
     case
       when shop_operation_country='JP' then (
         case
-          when `latest_owner_calm_direct_first_split_sea`='JP' then 'ENT'
+          when `latest_owner_calm_direct_first_split_sea`='JP' then 'KA'
           when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'  
           else 'Others'
@@ -101,16 +116,31 @@ end
 
 ------ CALM_TTS_Shop Ads<>TTS Perspective Spending Dataset (utc0, full)
 ---- Sales Team Breakdown
--- CALM Region
-CASE
- WHEN shop_operation_region='EU' THEN (case when `shop_operation_country`='GB' then 'UK' when `shop_operation_country` IN ('DE','IT','ES','FR','IE') then 'EU_others' else 'Others' end)
- ELSE shop_operation_region end
+ -- NAAP Region
+ CASE
+  WHEN shop_operation_region='EU' THEN (
+    case
+      when `shop_operation_country`='GB' then 'UK'
+      when `shop_operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
+      else 'Others'
+    end
+  )
+  WHEN shop_operation_region='LATAM' THEN (
+    case
+      when `shop_operation_country`='BR' then 'BR'
+      when `shop_operation_country`='MX' then 'MX'
+      else 'LATAM-Others'
+    end
+  )
+  ELSE shop_operation_region
+end
  
 -- Region Breakdown by OB/KA/SMB [Daily Latest]
 case
   when [Operation Region]='US' then (
     CASE
       WHEN this_year_owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
+      WHEN this_year_owner_calm_direct_first_split_sea='KR' THEN 'KROB'
       WHEN this_year_owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve & Others'
       WHEN this_year_owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
       WHEN this_year_owner_calm_direct_first_split_sea='NA-SMB' THEN 'NA-SMB'
@@ -218,16 +248,37 @@ CASE WHEN [Shop Ads Product Type] like '%ROI2%' THEN [Shop Ads Product Type] ELS
 
 ------ Shop M10n GMV Max Session Stat(Adv timezone,TikTok&Pangle&Toko)
 ---- Sales Team Breakdown
--- CALM Region
+-- NAAP Region
 CASE
- WHEN [operation_region]='EU' THEN (case when `shop_operation_country`='GB' then 'UK' when `shop_operation_country` IN ('DE','IT','ES','FR','IE') then 'EU_others' else 'Others' end)
- ELSE [operation_region] end
+  WHEN [operation_region]='EU' THEN (
+    case
+      when `shop_operation_country`='GB' then 'UK'
+      when `shop_operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
+      else 'Others'
+    end
+  )
+  WHEN [operation_region]='LATAM' THEN (
+    case
+      when `shop_operation_country`='BR' then 'BR'
+      when `shop_operation_country`='MX' then 'MX'
+      else 'LATAM-Others'
+    end
+  )
+  ELSE [operation_region]
+end
 
 -- Region Breakdown by OB/KA/SMB [Daily Latest]
 case
   when [operation_region]='US' then (
     CASE
       WHEN owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
+      WHEN owner_calm_direct_first_split_sea='KR' THEN 'KROB'
+      WHEN owner_calm_direct_first_split_sea='NA' THEN (
+        case
+          when [L2 Direct Salesteam Tag (Latest)] Like '%North America-SMB%' then 'NA-SMB'
+          else 'KA'
+        end
+      )
       WHEN owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
       WHEN owner_calm_direct_first_split_sea='NA-SMB' THEN 'NA-SMB'
       WHEN owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve & Others'
@@ -291,16 +342,31 @@ end
 
 ------  [AC,Joined] Product Commission Setup (UTC0, Global)
 ---- Sales Team Breakdown
--- CALM Region
+ -- NAAP Region
 CASE
- WHEN [shop_operation_region]='EU' THEN (case when `operation_country`='GB' then 'UK' when `operation_country` IN ('DE','IT','ES','FR','IE') then 'EU_others' else 'Others' end)
- ELSE [shop_operation_region] end
+  WHEN [shop_operation_region]='EU' THEN (
+    case
+      when `operation_country`='GB' then 'UK'
+      when `operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
+      else 'Others'
+    end
+  )
+  WHEN [shop_operation_region]='LATAM' THEN (
+    case
+      when `operation_country`='BR' then 'BR'
+      when `operation_country`='MX' then 'MX'
+      else 'LATAM-Others'
+    end
+  )
+  ELSE [shop_operation_region]
+end
 
 -- Region Breakdown by OB/KA/SMB [Daily Latest]
 case
   when [shop_operation_region]='US' then (
     CASE
       WHEN `owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
+      WHEN `owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
       WHEN `owner_calm_direct_first_split_sea` IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
       WHEN `owner_calm_direct_first_split_sea`='NA-SMB' THEN 'NA-SMB'
       WHEN `owner_calm_direct_first_split_sea`='SMB' THEN 'Self Serve & Others'
@@ -374,5 +440,4 @@ sum(
     )=0 then [shop_dollar_cost_1d]
   end
 )/sum([shop_dollar_cost_1d])
-
 
