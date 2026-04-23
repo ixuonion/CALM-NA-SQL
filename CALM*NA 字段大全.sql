@@ -53,7 +53,7 @@ case
       WHEN `latest_owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
       WHEN `latest_owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
       WHEN `latest_owner_calm_direct_first_split_sea`='SMB' THEN 'Self Serve'
-      WHEN `latest_owner_calm_direct_first_split_sea` IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
+      WHEN `latest_owner_calm_direct_first_split_sea` IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
       WHEN `latest_owner_calm_direct_first_split_sea`='NA-SMB' THEN 'NA-SMB'
       ELSE 'Others'
     END
@@ -62,7 +62,7 @@ case
     case
       when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
       when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `latest_owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
+      when `latest_owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
       else 'Others'
     end
   )
@@ -70,7 +70,7 @@ case
     case
       when shop_operation_country='JP' then (
         case
-          when `latest_owner_calm_direct_first_split_sea`='JP' then 'KA'
+          when `latest_owner_calm_direct_first_split_sea`='JP' then 'ENT'
           when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'  
           else 'Others'
@@ -78,7 +78,7 @@ case
       )
       when shop_operation_country='GB' then (
         case
-          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'KA'
+          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
           when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -86,7 +86,7 @@ case
       )
       when shop_operation_country='BR' then (
         case
-          when `latest_owner_calm_direct_first_split_sea` in ('Brazil','KA') then 'KA' 
+          when `latest_owner_calm_direct_first_split_sea` in ('Brazil','KA') then 'ENT' 
           when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -94,7 +94,7 @@ case
       )
       when shop_operation_country='MX' then (
         case
-          when `latest_owner_calm_direct_first_split_sea`in('Mexico','KA') then 'KA' 
+          when `latest_owner_calm_direct_first_split_sea`in('Mexico','KA') then 'ENT' 
           when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -102,7 +102,7 @@ case
       )
       when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
-          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'KA'
+          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
           when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -142,7 +142,7 @@ case
       WHEN this_year_owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
       WHEN this_year_owner_calm_direct_first_split_sea='KR' THEN 'KROB'
       WHEN this_year_owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve'
-      WHEN this_year_owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
+      WHEN this_year_owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
       WHEN this_year_owner_calm_direct_first_split_sea='NA-SMB' THEN 'NA-SMB'
       ELSE 'Others'
     END
@@ -151,7 +151,7 @@ case
     case
       when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
       when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
-      when  this_year_owner_calm_direct_first_split_sea in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
+      when  this_year_owner_calm_direct_first_split_sea in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
       else 'Others'
     end
   )
@@ -159,7 +159,7 @@ case
     case
       when shop_operation_country='JP' then (
         case
-          when this_year_owner_calm_direct_first_split_sea='JP' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='JP' then 'ENT'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
@@ -167,7 +167,7 @@ case
       )
       when shop_operation_country='GB' then (
         case
-          when this_year_owner_calm_direct_first_split_sea='EUI' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='EUI' then 'ENT'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
@@ -175,7 +175,7 @@ case
       )
       when shop_operation_country='BR' then (
         case
-          when this_year_owner_calm_direct_first_split_sea='Brazil' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='Brazil' then 'ENT'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
@@ -183,7 +183,7 @@ case
       )
       when shop_operation_country='MX' then (
         case
-          when this_year_owner_calm_direct_first_split_sea='Mexico' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='Mexico' then 'ENT'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
@@ -191,7 +191,7 @@ case
       )
       when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
-          when this_year_owner_calm_direct_first_split_sea='EUI' then 'KA'
+          when this_year_owner_calm_direct_first_split_sea='EUI' then 'ENT'
           when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
@@ -279,7 +279,7 @@ case
           else 'KA'
         end
       )
-      WHEN owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
+      WHEN owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
       WHEN owner_calm_direct_first_split_sea='NA-SMB' THEN 'NA-SMB'
       WHEN owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve'
       ELSE 'Others'
@@ -289,7 +289,7 @@ case
     case
       when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
       when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `owner_gbs_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
+      when `owner_gbs_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
       else 'Others'
     end
   )
@@ -297,7 +297,7 @@ case
     case
       when shop_operation_country='JP' then (
         case
-          when `owner_gbs_direct_first_split_sea`='JP' then 'KA'
+          when `owner_gbs_direct_first_split_sea`='JP' then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -305,7 +305,7 @@ case
       )
       when shop_operation_country='GB' then (
         case
-          when `owner_gbs_direct_first_split_sea`='EUI' then 'KA'
+          when `owner_gbs_direct_first_split_sea`='EUI' then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -313,7 +313,7 @@ case
       )
       when shop_operation_country='BR' then (
         case
-          when `owner_gbs_direct_first_split_sea` in('Brazil', 'ENT') then 'KA'
+          when `owner_gbs_direct_first_split_sea` in('Brazil', 'ENT') then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -321,7 +321,7 @@ case
       )
       when shop_operation_country='MX' then (
         case
-          when `owner_gbs_direct_first_split_sea` in('Mexico', 'ENT') then 'KA'
+          when `owner_gbs_direct_first_split_sea` in('Mexico', 'ENT') then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -329,7 +329,7 @@ case
       )
       when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
-          when `owner_gbs_direct_first_split_sea`='EUI' then 'KA'
+          when `owner_gbs_direct_first_split_sea`='EUI' then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -367,7 +367,7 @@ case
     CASE
       WHEN `owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
-      WHEN `owner_calm_direct_first_split_sea` IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'KA'
+      WHEN `owner_calm_direct_first_split_sea` IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
       WHEN `owner_calm_direct_first_split_sea`='NA-SMB' THEN 'NA-SMB'
       WHEN `owner_calm_direct_first_split_sea`='SMB' THEN 'Self Serve'
       ELSE 'Others'
@@ -377,7 +377,7 @@ case
     case
       when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
       when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'KA'
+      when `owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
       else 'Others'
     end
   )
@@ -385,7 +385,7 @@ case
     case
       when `operation_country`='JP' then (
         case
-          when `owner_calm_direct_first_split_sea`='JP' then 'KA'
+          when `owner_calm_direct_first_split_sea`='JP' then 'ENT'
           when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -393,7 +393,7 @@ case
       )
       when `operation_country`='GB' then (
         case
-          when `owner_calm_direct_first_split_sea`='EUI' then 'KA'
+          when `owner_calm_direct_first_split_sea`='EUI' then 'ENT'
           when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -401,7 +401,7 @@ case
       )
       when `operation_country`='BR' then (
         case
-          when `owner_gbs_direct_first_split_sea`in ('Brazil','ENT') then 'KA'
+          when `owner_gbs_direct_first_split_sea`in ('Brazil','ENT') then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -409,7 +409,7 @@ case
       )
       when `operation_country`='MX' then (
         case
-          when `owner_gbs_direct_first_split_sea`in ('Mexico','ENT') then 'KA'
+          when `owner_gbs_direct_first_split_sea`in ('Mexico','ENT') then 'ENT'
           when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
@@ -417,7 +417,7 @@ case
       )
       when `operation_country` in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
-          when `owner_calm_direct_first_split_sea`='EUI' then 'KA'
+          when `owner_calm_direct_first_split_sea`='EUI' then 'ENT'
           when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
           when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
