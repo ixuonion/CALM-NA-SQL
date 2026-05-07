@@ -248,6 +248,17 @@ CASE WHEN [Shop Ads Product Type] like '%ROI2%' THEN [Shop Ads Product Type] ELS
 
 ------ Shop M10n GMV Max Session Stat(Adv timezone,TikTok&Pangle&Toko)
 ---- Sales Team Breakdown
+-- CNOB SN3 Department
+case
+  when `direct_sales_department_name` like '%Fashion%' then '电综Fashion'
+  when `direct_sales_department_name` like '%Beauty%' then '电综Beauty'
+  when `direct_sales_department_name` like '%Elec%' then '电综CE'
+  when `direct_sales_department_name` like '%Lifestyle%' then '电综Lifestyle'
+  when `direct_sales_department_name` like '%Lifestyle%' then '电综Lifestyle'
+  When `direct_sales_department_name` like '%FMCG%' then '电综FMCG'
+  else 'Others'
+end
+
 -- NAAP Region
 CASE
   WHEN [operation_region]='EU' THEN (
@@ -267,7 +278,7 @@ CASE
   ELSE [operation_region]
 end
 
--- Region Breakdown by OB/KA/SMB [Daily Latest]
+-- Region Breakdown by OB/KA/SMB [Latest]
 case
   when [operation_region]='US' then (
     CASE
