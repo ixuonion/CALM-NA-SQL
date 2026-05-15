@@ -239,98 +239,39 @@ sum(
 CASE WHEN [Shop Ads Product Type] like '%ROI2%' THEN [Shop Ads Product Type] ELSE 'ROI1' END
 
 
+-- GMV & Refunds
+-- Refund Rate
+(ifsum([refund_amt_usd_14d])=0, 0, (sum([refund_amt_usd_14d])/sum([Total GMV])))
 
--- NAAP Region
+-- Refund Rate 分桶
 CASE
-  WHEN [operation_region]='EU' THEN (
-    case
-      when `shop_operation_country`='GB' then 'UK'
-      when `shop_operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
-      else 'Others'
-    end
-  )
-  WHEN [operation_region]='LATAM' THEN (
-    case
-      when `shop_operation_country`='BR' then 'BR'
-      when `shop_operation_country`='MX' then 'MX'
-      else 'LATAM-Others'
-    end
-  )
-  ELSE [operation_region]
-end
+  WHEN if(
+    {filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]}=0,
+    0,
+    ({filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[refund_amt_usd_14d]}/{filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]})
+  )<0.1 THEN '退款率 0%-10%'
+  WHEN if(
+    {filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]}=0,
+    0,
+    ({filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[refund_amt_usd_14d]}/{filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]})
+  )<0.2 THEN '退款率 10%-20%'
+  WHEN if(
+    {filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]}=0,
+    0,
+    ({filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[refund_amt_usd_14d]}/{filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]})
+  )<0.3 THEN '退款率 20%-30%'
+  WHEN if(
+    {filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]}=0,
+    0,
+    ({filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[refund_amt_usd_14d]}/{filter=true : fixed `shop_id`,toYYYYMM(`stat_date`): sum[Total GMV]})
+  )<0.5 THEN '退款率 30%-50%'
+  ELSE '退款率 50%+'
+END
+-- Organic GMV YoY [p_date]
 
--- Region Breakdown by OB/KA/SMB [Latest]
-case
-  when [operation_region]='US' then (
-    CASE
-      WHEN owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
-      WHEN owner_calm_direct_first_split_sea='KR' THEN 'KROB'
-      WHEN owner_calm_direct_first_split_sea='NA' THEN (
-        case
-          when [L2 Direct Salesteam Tag (Latest)] Like '%North America-SMB%' then 'NA-SMB'
-          else 'KA'
-        end
-      )
-      WHEN owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
-      WHEN owner_calm_direct_first_split_sea='NA-SMB' THEN 'NA-SMB'
-      WHEN owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve'
-      ELSE 'Others'
-    END
-  )
-  when [operation_region]='SEA' then (
-    case
-      when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-      when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `owner_gbs_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
-      else 'Others'
-    end
-  )
-  else (
-    case
-      when shop_operation_country='JP' then (
-        case
-          when `owner_gbs_direct_first_split_sea`='JP' then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country='GB' then (
-        case
-          when `owner_gbs_direct_first_split_sea`='EUI' then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country='BR' then (
-        case
-          when `owner_gbs_direct_first_split_sea` in('Brazil', 'ENT') then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country='MX' then (
-        case
-          when `owner_gbs_direct_first_split_sea` in('Mexico', 'ENT') then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
-        case
-          when `owner_gbs_direct_first_split_sea`='EUI' then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      else 'Others'
-    end
-  )
-end
+
+-- Direct Ads GMV YoY [p_date]
+
 
 
 ------ Shop M10n GMV Max Session Stat(Adv timezone,TikTok&Pangle&Toko)
