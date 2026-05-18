@@ -274,6 +274,9 @@ END
 
 
 
+{filter=true : fixed `shop_id`,Max(`stat_date`): [global_seller_gmv_tier]}
+{filter=true : fixed `shop_id`,Max(`stat_date`): [private].[Region Breakdown by OB/KA/SMB [Latest]]}
+
 ------ Shop M10n GMV Max Session Stat(Adv timezone,TikTok&Pangle&Toko)
 ---- Sales Team Breakdown
 -- CNOB SN3 Department
@@ -5020,3 +5023,28 @@ end
   ),
   0.0
 )
+
+
+
+
+------ Shop M10n Shop Perspective Pro (UTC0,Global,TikTok&Pangle&Toko端)
+---- Sale Team Breakdown
+-- NAAP Region
+CASE
+  WHEN [operation_region]='EU' THEN (
+    case
+      when `shop_operation_country_code`='GB' then 'UK'
+      when `shop_operation_country_code` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
+      else 'Others'
+    end
+  )
+  WHEN [operation_region]='LATAM' THEN (
+    case
+      when `shop_operation_country_code`='BR' then 'BR'
+      when `shop_operation_country_code`='MX' then 'MX'
+      else 'LATAM-Others'
+    end
+  )
+  ELSE [operation_region]
+end
+
