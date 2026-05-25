@@ -1,0 +1,330 @@
+"NAAP Fields.sql"
+  1dd65ff40f0a0170 5178 gitai:{"mixed_line_ranges":[{"Single":5178}],"operations":[]}
+  478b71862f74201a 5185 gitai:{"mixed_line_ranges":[{"Single":5185}],"operations":[]}
+  fa1d3bc972e592f8 5149-5154
+  632419dc3cfd3c0a 5198-5202 gitai:{"mixed_line_ranges":[{"Single":5198},{"Single":5202}],"operations":[]}
+  e6cba607a9a2b836 5161-5166 gitai:{"mixed_line_ranges":[{"Range":[5163,5164]}],"operations":[]}
+  2970c69449c433ba 5224 gitai:{"mixed_line_ranges":[{"Single":5224}],"operations":[]}
+  9e6648fbdceab9ca 5158 gitai:{"mixed_line_ranges":[{"Single":5158}],"operations":[]}
+  86fbf543d842baee 5139 gitai:{"mixed_line_ranges":[{"Single":5139}],"operations":[]}
+  08d0bc109548bda9 5172 gitai:{"mixed_line_ranges":[{"Single":5172}],"operations":[]}
+  30b3a39467676deb 1840-1868 gitai:{"mixed_line_ranges":[{"Single":1840},{"Single":1843},{"Single":1849},{"Single":1864}],"operations":[]}
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "6a3e1c92fbe988a4e455913f055d4f006bd0696c",
+  "prompts": {
+    "08d0bc109548bda9": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-7a2051dc-d330-46c4-88a5-e29a18779221",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "1dd65ff40f0a0170": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-39614441-6c0e-4506-96e4-49bfbe01361f",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "2970c69449c433ba": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-eb624b17-a7df-41af-8dce-493f95d090bf",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "30b3a39467676deb": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-cab01aab-cf12-44f5-b2da-8ea9e32b6c89",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 1,
+      "accepted_lines": 11,
+      "overriden_lines": 4
+    },
+    "478b71862f74201a": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-3a2c74fe-57db-47d7-899f-c9e23f007d05",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "6096043c38ff676c": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-bb3c1a04-4d44-4cbb-976c-c285c2bef680",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "632419dc3cfd3c0a": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-25479e8a-675c-4f11-bdec-614032e27628",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 2
+    },
+    "766f6e9b7c4f76b5": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-57b4eb07-ae0a-419c-946a-2dde32b583b9",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "86fbf543d842baee": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-f7f3be72-9a18-450f-ac04-547f99ee2db7",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "9e6648fbdceab9ca": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-0b535746-fe3b-4a39-8822-9b26fcdb8439",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "e6cba607a9a2b836": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-ad2d870d-4e46-4837-a233-9baa32fde4ff",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 4,
+      "overriden_lines": 2
+    },
+    "fa1d3bc972e592f8": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-9a3efca8-9e72-4526-a8d3-ff5474eebfa1",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 6,
+      "overriden_lines": 0
+    }
+  },
+  "attestation_metadata": {
+    "NAAP Fields.sql": [
+      {
+        "hash": "1dd65ff40f0a0170",
+        "line_ranges": [
+          {
+            "Single": 5178
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5178
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "478b71862f74201a",
+        "line_ranges": [
+          {
+            "Single": 5185
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5185
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "632419dc3cfd3c0a",
+        "line_ranges": [
+          {
+            "Range": [
+              5198,
+              5202
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5198
+          },
+          {
+            "Single": 5202
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "e6cba607a9a2b836",
+        "line_ranges": [
+          {
+            "Range": [
+              5161,
+              5166
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Range": [
+              5163,
+              5164
+            ]
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "2970c69449c433ba",
+        "line_ranges": [
+          {
+            "Single": 5224
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5224
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "9e6648fbdceab9ca",
+        "line_ranges": [
+          {
+            "Single": 5158
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5158
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "86fbf543d842baee",
+        "line_ranges": [
+          {
+            "Single": 5139
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5139
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "08d0bc109548bda9",
+        "line_ranges": [
+          {
+            "Single": 5172
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 5172
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "30b3a39467676deb",
+        "line_ranges": [
+          {
+            "Range": [
+              1840,
+              1868
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 1840
+          },
+          {
+            "Single": 1843
+          },
+          {
+            "Single": 1849
+          },
+          {
+            "Single": 1864
+          }
+        ],
+        "operations": []
+      }
+    ]
+  },
+  "remote_transcripts": {}
+}
