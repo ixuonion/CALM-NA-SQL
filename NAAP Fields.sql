@@ -243,6 +243,9 @@ CASE WHEN [Shop Ads Product Type] like '%ROI2%' THEN [Shop Ads Product Type] ELS
 -- Refund Rate
 (ifsum([refund_amt_usd_14d])=0, 0, (sum([refund_amt_usd_14d])/sum([Total GMV])))
 
+-- Refund Rate 动态百分位（10%）
+concat('前', toString(toUInt8(ceil(cume_dist() OVER (ORDER BY (sum([refund_amt_usd_14d]) / sum([Total GMV])) DESC) * 10) * 10)), '%')
+
 -- Refund Rate 分桶
 CASE
   WHEN if(
@@ -292,95 +295,71 @@ end
 
 -- NAAP Region
 CASE
-  WHEN [operation_region]='EU' THEN (
-    case
-      when `shop_operation_country`='GB' then 'UK'
-      when `shop_operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
-      else 'Others'
-    end
-  )
-  WHEN [operation_region]='LATAM' THEN (
-    case
-      when `shop_operation_country`='BR' then 'BR'
-      when `shop_operation_country`='MX' then 'MX'
-      else 'LATAM-Others'
-    end
-  )
+  WHEN [operation_region] = 'EU' AND `shop_operation_country` = 'GB' THEN 'UK'
+  WHEN [operation_region] = 'EU' AND `shop_operation_country` IN ('DE', 'IT', 'ES', 'FR', 'IE') THEN 'EU_OTHERS'
+  WHEN [operation_region] = 'LATAM' AND `shop_operation_country` = 'BR' THEN 'BR'
+  WHEN [operation_region] = 'LATAM' AND `shop_operation_country` = 'MX' THEN 'MX'
+  WHEN [operation_region] = 'LATAM' THEN 'LATAM_OTHERS'
   ELSE [operation_region]
-end
+END
 
 -- Region Breakdown by OB/KA/SMB [Latest]
-case
-  when [operation_region]='US' then (
+CASE
+  WHEN [operation_region] = 'US' THEN
     CASE
-      WHEN owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
-      WHEN owner_calm_direct_first_split_sea='KR' THEN 'KROB'
-      WHEN owner_calm_direct_first_split_sea='NA' THEN (
-        case
-          when [L2 Direct Salesteam Tag (Latest)] Like '%North America-SMB%' then 'NA-SMB'
-          else 'KA'
-        end
-      )
-      WHEN owner_calm_direct_first_split_sea IN('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
-      WHEN owner_calm_direct_first_split_sea='NA-SMB' THEN 'NA-SMB'
-      WHEN owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve'
-      ELSE 'Others'
+      WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
+      WHEN `owner_calm_direct_first_split_sea` IN ('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA_US'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA-SMB' THEN 'NA_SMB'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA'
+           OR [L2 Direct Salesteam Tag (Latest)] LIKE '%North America-SMB%' THEN 'NA_SMB'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA' THEN 'KA'
+      WHEN `owner_calm_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      ELSE 'OTHERS'
     END
-  )
-  when [operation_region]='SEA' then (
-    case
-      when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-      when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-      when `owner_gbs_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
-      else 'Others'
-    end
-  )
-  else (
-    case
-      when shop_operation_country='JP' then (
-        case
-          when `owner_gbs_direct_first_split_sea`='JP' then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country='GB' then (
-        case
-          when `owner_gbs_direct_first_split_sea`='EUI' then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country='BR' then (
-        case
-          when `owner_gbs_direct_first_split_sea` in('Brazil', 'ENT') then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country='MX' then (
-        case
-          when `owner_gbs_direct_first_split_sea` in('Mexico', 'ENT') then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
-        case
-          when `owner_gbs_direct_first_split_sea`='EUI' then 'ENT'
-          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
-          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
-          else 'Others'
-        end
-      )
-      else 'Others'
-    end
-  )
-end
+
+  WHEN [operation_region] = 'SEA' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      WHEN `owner_gbs_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID', 'Strategic Accounts', 'SEA-Others', 'Marketplace') THEN 'ENT'
+      ELSE 'OTHERS'
+    END
+
+  WHEN `shop_operation_country` = 'JP' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` = 'JP' THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'OTHERS'
+    END
+
+  WHEN `shop_operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` = 'EUI' THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'OTHERS'
+    END
+
+  WHEN `shop_operation_country` = 'BR' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'OTHERS'
+    END
+
+  WHEN `shop_operation_country` = 'MX' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'OTHERS'
+    END
+
+  ELSE 'OTHERS'
+END
 
 ---- Promotion SEA
 -- Promotion Calendar SEA [MAY26]
@@ -1816,6 +1795,93 @@ CASE shop_operation_country
     END
   ELSE '非大促'
 END
+
+---- Commi. Saving via GMax
+-- white list / overall rev. share campaign level
+sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_white_list]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)/sum([dollar_cost])
+
+-- adopted / white-listed rev. share campaign level
+sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_current_day_adopt]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)/sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_white_list]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)
+
+
+-- effected / adopted rev. share campaign level
+sum(
+  if(
+    {filter=true:fixed [campaign_id],[p_date]:sum(if([is_current_day_adopt]=1 and [is_last_hour_adopt]=1 and [total_gmv]>0, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)/sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_current_day_adopt]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)
+
+-- Offered / Whitelisted rev. share campaign level (is batch offered)
+sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_current_batch_send_offer]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)/sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_white_list]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)
+
+-- Adopted / Offered rev. share campaign level (is batch offered)
+sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_current_day_adopt]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)/sum(
+  if(
+    {filter=true:fixed ([campaign_id],[p_date]):sum(if([is_current_batch_send_offer]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)
+
+-- white list / overall rev. share shop level
+sum(if({filter=true:fixed ([shop_id],[p_date]):sum(if([is_white_list]=1, 1, 0))} > 0, [dollar_cost], 0))/sum([dollar_cost])
+
+-- adopted / white-listed rev. share shop level
+sum(
+  if(
+    {filter=true:fixed ([shop_id],[p_date]):sum(if([is_current_day_adopt]=1, 1, 0))}>0,
+    [dollar_cost],
+    0
+  )
+)/sum(if({filter=true:fixed ([shop_id],[p_date]):sum(if([is_white_list]=1, 1, 0))} > 0, [dollar_cost], 0))
+
+-- effected / adopted rev. share shop level
+sum(if({filter=true:fixed [shop_id],[p_date]:sum(if([is_current_day_adopt]=1 and [is_last_hour_adopt]=1 and [total_gmv]>0, 1, 0))}>0, [dollar_cost], 0))/sum(if({filter=true:fixed ([shop_id],[p_date]):sum(if([is_current_day_adopt]=1, 1, 0))} > 0, [dollar_cost], 0))
+
 
 ------  [AC,Joined] Product Commission Setup (UTC0, Global)
 ---- Sales Team Breakdown
@@ -5025,8 +5091,6 @@ end
 )
 
 
-
-
 ------ Shop M10n Shop Perspective Pro (UTC0,Global,TikTok&Pangle&Toko端)
 ---- Sale Team Breakdown
 -- NAAP Region
@@ -5048,3 +5112,129 @@ CASE
   ELSE [operation_region]
 end
 
+------ Shop M10n Shop Perspective Pro (UTC0,Global,TikTok&Pangle&Toko端)
+---- Sale Team Breakdown
+
+-- NAAP Region
+CASE
+  WHEN [operation_region]='EU' THEN (
+    case
+      when `shop_operation_country`='GB' then 'UK'
+      when `shop_operation_country` IN('DE', 'IT', 'ES', 'FR', 'IE') then 'EU_others'
+      else 'Others'
+    end
+  )
+  WHEN [operation_region]='LATAM' THEN (
+    case
+      when `shop_operation_country`='BR' then 'BR'
+      when `shop_operation_country`='MX' then 'MX'
+      else 'LATAM-Others'
+    end
+  )
+  ELSE [operation_region]
+end
+
+-- Region Breakdown by OB/KA/SMB [Latest]
+case
+  when `shop_operation_country`='US' then (
+    CASE
+      when [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+      when [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+        Case
+          when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+          when direct_sales_department_name like '%Korea%' then 'KROB'
+          else 'Others'
+        end
+      )
+      when [L1 Salesteam Tag(Directfirst,Historical)]='NA Team' then (
+        Case
+          when direct_sales_department_name like '%North America-SMB%' then 'NA-SMB'
+          else 'NA-US'
+        end
+      )
+      else 'Others'
+    END
+  )
+  when `shop_operation_country` IN('MY', 'VN', 'TH', 'SG', 'ID', 'PH') then (
+    case
+      when [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+      when [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+        Case
+          when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+          else 'ENT'
+        end
+      )
+      else 'Others'
+    end
+  )
+  else (
+    case
+      when `shop_operation_country`='JP' then (
+        case
+          when [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+          when [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+            Case
+              when direct_sales_department_name like '%Japen%' then 'ENT'
+              when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+              else 'Others'
+            end
+          )
+          else 'Others'
+        end
+      )
+      when `shop_operation_country`='GB' then (
+        case
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='EUI Team' then 'ENT'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+            Case
+              when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+              else 'Others'
+            end
+          )
+          else 'Others'
+        end
+      )
+      when `shop_operation_country`='BR' then (
+        CASE
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='LATAM Team' then 'ENT'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+            Case
+              when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+              else 'Others'
+            end
+          )
+          else 'Others'
+        end
+      )
+      when `shop_operation_country`='MX' then (
+        CASE
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='LATAM Team' then 'ENT'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+            Case
+              when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+              else 'Others'
+            end
+          )
+          else 'Others'
+        end
+      )
+      when `shop_operation_country` in('DE', 'IT', 'ES', 'FR', 'IE') then (
+        case
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='SMB Team' then 'Self Serve'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='EUI Team' then 'ENT'
+          WHEN [L1 Salesteam Tag(Directfirst,Historical)]='APAC Team' then (
+            Case
+              when direct_sales_department_name like '%China Outbound%' then 'CNOB'
+              else 'Others'
+            end
+          )
+          else 'Others'
+        end
+      )
+      else 'Others'
+    end
+  )
+end
