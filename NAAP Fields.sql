@@ -270,11 +270,6 @@ CASE
   )<0.5 THEN '退款率 30%-50%'
   ELSE '退款率 50%+'
 END
--- Organic GMV YoY [p_date]
-
-
--- Direct Ads GMV YoY [p_date]
-
 
 
 {filter=true : fixed `shop_id`,Max(`stat_date`): [global_seller_gmv_tier]}
@@ -309,56 +304,54 @@ CASE
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
-      WHEN `owner_calm_direct_first_split_sea` IN ('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA_US'
-      WHEN `owner_calm_direct_first_split_sea` = 'NA-SMB' THEN 'NA_SMB'
-      WHEN `owner_calm_direct_first_split_sea` = 'NA'
-           OR [L2 Direct Salesteam Tag (Latest)] LIKE '%North America-SMB%' THEN 'NA_SMB'
-      WHEN `owner_calm_direct_first_split_sea` = 'NA' THEN 'KA'
-      WHEN `owner_calm_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
-      ELSE 'OTHERS'
+      WHEN `owner_calm_direct_first_split_sea` IN ('NA-US', 'NA-Canada', 'NA-Others') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA-SMB' THEN 'NA-SMB'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA' THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      ELSE 'Others'
     END
 
   WHEN [operation_region] = 'SEA' THEN
     CASE
-      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
       WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_gbs_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID', 'Strategic Accounts', 'SEA-Others', 'Marketplace') THEN 'ENT'
-      ELSE 'OTHERS'
+      ELSE 'Others'
     END
 
   WHEN `shop_operation_country` = 'JP' THEN
     CASE
       WHEN `owner_gbs_direct_first_split_sea` = 'JP' THEN 'ENT'
-      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
       WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
-      ELSE 'OTHERS'
+      ELSE 'Others'
     END
 
   WHEN `shop_operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
     CASE
       WHEN `owner_gbs_direct_first_split_sea` = 'EUI' THEN 'ENT'
-      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
       WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
-      ELSE 'OTHERS'
+      ELSE 'Others'
     END
 
   WHEN `shop_operation_country` = 'BR' THEN
     CASE
       WHEN `owner_gbs_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
-      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
       WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
-      ELSE 'OTHERS'
+      ELSE 'Others'
     END
 
   WHEN `shop_operation_country` = 'MX' THEN
     CASE
       WHEN `owner_gbs_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
-      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'SELF_SERVE'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
       WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
-      ELSE 'OTHERS'
+      ELSE 'Others'
     END
 
-  ELSE 'OTHERS'
+  ELSE 'Others'
 END
 
 ---- Promotion SEA
