@@ -1,0 +1,135 @@
+"NAAP Fields.sql"
+  3631c78ef7e437c2 462 gitai:{"mixed_line_ranges":[{"Single":462}],"operations":[]}
+  293660baa7c64527 419
+  561f59ff2121af37 417,421-422 gitai:{"mixed_line_ranges":[{"Single":417},{"Single":421}],"operations":[]}
+  b870a7bf6580e571 418 gitai:{"mixed_line_ranges":[{"Single":418}],"operations":[]}
+  4a30cf974518fbae 420
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "37f56dd5af1fb2488a5a07951815e81d5977faf1",
+  "prompts": {
+    "293660baa7c64527": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-7908b48f-4e3a-445e-8b39-22815b3a7106",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "3631c78ef7e437c2": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-631af64b-00a6-476d-96f9-bedf64b7e603",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    },
+    "4a30cf974518fbae": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-eb36a427-47cf-4ebc-84b5-302b6dd022c6",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "561f59ff2121af37": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-6cb4dbfa-5ca2-40cc-9d36-4d38772588ca",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 2
+    },
+    "b870a7bf6580e571": {
+      "agent_id": {
+        "tool": "trae-cue",
+        "id": "ai_tab-icr-aa781574-b1dd-4e23-9403-81fab0672978",
+        "model": "default"
+      },
+      "human_author": "你的用户名 <xuhao.ivan@bytedance.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 0,
+      "overriden_lines": 1
+    }
+  },
+  "attestation_metadata": {
+    "NAAP Fields.sql": [
+      {
+        "hash": "3631c78ef7e437c2",
+        "line_ranges": [
+          {
+            "Single": 462
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 462
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "561f59ff2121af37",
+        "line_ranges": [
+          {
+            "Single": 417
+          },
+          {
+            "Range": [
+              421,
+              422
+            ]
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 417
+          },
+          {
+            "Single": 421
+          }
+        ],
+        "operations": []
+      },
+      {
+        "hash": "b870a7bf6580e571",
+        "line_ranges": [
+          {
+            "Single": 418
+          }
+        ],
+        "mixed_line_ranges": [
+          {
+            "Single": 418
+          }
+        ],
+        "operations": []
+      }
+    ]
+  },
+  "remote_transcripts": {}
+}
