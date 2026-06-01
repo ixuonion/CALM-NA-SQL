@@ -46,6 +46,74 @@ sum(
   ELSE shop_operation_region
 end
 
+--  Incl. CA Region Breakdown by OB/KA/SMB [Latest]
+case
+  when [operation_region]='US' then (
+    CASE
+      WHEN `latest_owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
+      WHEN `latest_owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
+      WHEN `latest_owner_calm_direct_first_split_sea`='SMB' THEN 'Self Serve'
+      WHEN `latest_owner_calm_direct_first_split_sea` IN('NA-US', 'NA-SMB', 'NA-Others') THEN 'NA-US'
+      WHEN `latest_owner_calm_direct_first_split_sea`='NA-Canada' THEN 'NA-CA'
+      ELSE 'Others'
+    END
+  )
+  when [operation_region]='SEA' then (
+    case
+      when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+      when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+      when `latest_owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
+      else 'Others'
+    end
+  )
+  else (
+    case
+      when shop_operation_country='JP' then (
+        case
+          when `latest_owner_calm_direct_first_split_sea`='JP' then 'ENT'
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'SMB'
+          when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'  
+          else 'Others'
+        end
+      )
+      when shop_operation_country='GB' then (
+        case
+          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country='BR' then (
+        case
+          when `latest_owner_calm_direct_first_split_sea` in ('Brazil','KA') then 'ENT' 
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country='MX' then (
+        case
+          when `latest_owner_calm_direct_first_split_sea`in('Mexico','KA') then 'ENT' 
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
+        case
+          when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
+          when `latest_owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      else 'Others'
+    end
+  )
+end
+
+
 -- Region Breakdown by OB/KA/SMB [Latest]
 case
   when [operation_region]='US' then (
@@ -127,8 +195,6 @@ case
   else 'Others'
 end
 
-
-
  -- NAAP Region
  CASE
   WHEN shop_operation_region='EU' THEN (
@@ -148,6 +214,73 @@ end
   ELSE shop_operation_region
 end
  
+ -- Incl. CARegion Breakdown by OB/KA/SMB [Daily Latest]
+case
+  when [Operation Region]='US' then (
+    CASE
+      WHEN this_year_owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
+      WHEN this_year_owner_calm_direct_first_split_sea='KR' THEN 'KROB'
+      WHEN this_year_owner_calm_direct_first_split_sea='SMB' THEN 'Self Serve'
+      WHEN this_year_owner_calm_direct_first_split_sea IN('NA-US', 'NA-SMB', 'NA-Others') THEN 'NA-US'
+      WHEN this_year_owner_calm_direct_first_split_sea='NA-Canada' THEN 'NA-CA'
+      ELSE 'Others'
+    END
+  )
+  when [Operation Region]='SEA' then (
+    case
+      when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
+      when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
+      when  this_year_owner_calm_direct_first_split_sea in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
+      else 'Others'
+    end
+  )
+  else (
+    case
+      when shop_operation_country='JP' then (
+        case
+          when this_year_owner_calm_direct_first_split_sea='JP' then 'ENT'
+          when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country='GB' then (
+        case
+          when this_year_owner_calm_direct_first_split_sea='EUI' then 'ENT'
+          when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country='BR' then (
+        case
+          when this_year_owner_calm_direct_first_split_sea='Brazil' then 'ENT'
+          when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country='MX' then (
+        case
+          when this_year_owner_calm_direct_first_split_sea='Mexico' then 'ENT'
+          when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
+        case
+          when this_year_owner_calm_direct_first_split_sea='EUI' then 'ENT'
+          when this_year_owner_calm_direct_first_split_sea='SMB' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      else 'Others'
+    end
+  )
+end
+
 -- Region Breakdown by OB/KA/SMB [Daily Latest]
 case
   when [Operation Region]='US' then (
@@ -271,6 +404,25 @@ CASE
   ELSE '退款率 50%+'
 END
 
+---- shop_id breakdown
+-- SKM breakdown by T3+ GMV Tier
+case
+  when key_seller_label_detailed in(
+    'A1 P0-brand',
+    'A1 P1-brand',
+    'A2 P0-retailer',
+    'A2 P1-retailer',
+    'B1 10M+ sellers'
+  ) then (
+    case when `Global Seller GMV Tier` in ('T0','T1','T2') then 'T3- SKM'
+    when `Global Seller GMV Tier` = 'T3' then 'T3 SKM'
+    when `Global Seller GMV Tier` = 'T4' then 'T4 SKM'
+    when `Global Seller GMV Tier` = 'T5' then 'T5 SKM'
+    else 'non SKM'
+    end
+  )
+  else 'non SKM'
+end
 
 {filter=true : fixed `shop_id`,Max(`stat_date`): [global_seller_gmv_tier]}
 {filter=true : fixed `shop_id`,Max(`stat_date`): [private].[Region Breakdown by OB/KA/SMB [Latest]]}
@@ -296,6 +448,62 @@ CASE
   WHEN [operation_region] = 'LATAM' AND `shop_operation_country` = 'MX' THEN 'MX'
   WHEN [operation_region] = 'LATAM' THEN 'LATAM_OTHERS'
   ELSE [operation_region]
+END
+
+-- Incl.CA Region Breakdown by OB/KA/SMB [Latest]
+CASE
+  WHEN [operation_region] = 'US' THEN
+    CASE
+      WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
+      WHEN `owner_calm_direct_first_split_sea` IN ('NA-US', 'NA-SMB', 'NA-Others') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA-Canada' THEN 'NA-CA'
+      WHEN `owner_calm_direct_first_split_sea` = 'NA' THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      ELSE 'Others'
+    END
+
+  WHEN [operation_region] = 'SEA' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      WHEN `owner_gbs_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID', 'Strategic Accounts', 'SEA-Others', 'Marketplace') THEN 'ENT'
+      ELSE 'Others'
+    END
+
+  WHEN `shop_operation_country` = 'JP' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` = 'JP' THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'Others'
+    END
+
+  WHEN `shop_operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` = 'EUI' THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'Others'
+    END
+
+  WHEN `shop_operation_country` = 'BR' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'Others'
+    END
+
+  WHEN `shop_operation_country` = 'MX' THEN
+    CASE
+      WHEN `owner_gbs_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
+      WHEN `owner_gbs_direct_first_split_sea` = 'SMB' THEN 'Self Serve'
+      WHEN `owner_gbs_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
+      ELSE 'Others'
+    END
+
+  ELSE 'Others'
 END
 
 -- Region Breakdown by OB/KA/SMB [Latest]
@@ -1814,7 +2022,6 @@ sum(
   )
 )
 
-
 -- effected / adopted rev. share campaign level
 sum(
   if(
@@ -1895,6 +2102,73 @@ CASE
     end
   )
   ELSE [shop_operation_region]
+end
+
+-- Incl. CA Region Breakdown by OB/KA/SMB [Latest]
+case
+  when [shop_operation_region]='US' then (
+    CASE
+      WHEN `owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
+      WHEN `owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
+      WHEN `owner_calm_direct_first_split_sea` IN('NA-US', 'NA-SMB', 'NA-Others') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea`='NA-Canada' THEN 'NA-CA'
+      WHEN `owner_calm_direct_first_split_sea`='SMB' THEN 'Self Serve'
+      ELSE 'Others'
+    END
+  )
+  when [shop_operation_region]='SEA' then (
+    case
+      when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+      when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+      when `owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID','Strategic Accounts','SEA-Others','Marketplace') then 'ENT'
+      else 'Others'
+    end
+  )
+  else (
+    case
+      when `operation_country`='JP' then (
+        case
+          when `owner_calm_direct_first_split_sea`='JP' then 'ENT'
+          when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when `operation_country`='GB' then (
+        case
+          when `owner_calm_direct_first_split_sea`='EUI' then 'ENT'
+          when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when `operation_country`='BR' then (
+        case
+          when `owner_gbs_direct_first_split_sea`in ('Brazil','ENT') then 'ENT'
+          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when `operation_country`='MX' then (
+        case
+          when `owner_gbs_direct_first_split_sea`in ('Mexico','ENT') then 'ENT'
+          when `owner_gbs_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `owner_gbs_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      when `operation_country` in('DE', 'IT', 'ES', 'FR', 'IE') then (
+        case
+          when `owner_calm_direct_first_split_sea`='EUI' then 'ENT'
+          when `owner_calm_direct_first_split_sea`='SMB' then 'Self Serve'
+          when `owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
+          else 'Others'
+        end
+      )
+      else 'Others'
+    end
+  )
 end
 
 -- Region Breakdown by OB/KA/SMB [Latest]
