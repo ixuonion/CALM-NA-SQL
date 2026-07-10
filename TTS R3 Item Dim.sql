@@ -681,3 +681,7 @@ ON      STRING (a.shop_id)=STRING (d.shop_id)
 LEFT JOIN
         shop_author_commission_rate f
 ON      STRING (a.shop_id)=STRING (f.shop_id)
+
+
+
+
