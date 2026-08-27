@@ -78,14 +78,14 @@ case
     CASE
       WHEN `latest_owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
       WHEN `latest_owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
-      WHEN `latest_owner_calm_direct_first_split_sea`='Scaled Growth' THEN 'Self Serve'
-      WHEN `latest_owner_calm_direct_first_split_sea` IN('NA-Others','NA-Non Comm-L&S','NA-Non Comm-A&G','NA-Comm-Retail','NA-Comm-CPG','NA-CA') THEN 'NA-US'
+      WHEN `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+      WHEN `latest_owner_calm_direct_first_split_sea` like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
   )
   when [operation_region]='SEA' then (
     case
-      when `latest_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+      when `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
       when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
       when `latest_owner_calm_direct_first_split_sea` in('MY','PH','VN','TH','SG','ID') then 'ENT'
       else 'Others'
@@ -96,7 +96,7 @@ case
       when shop_operation_country='JP' then (
         case
           when `latest_owner_calm_direct_first_split_sea`='JP' then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -104,7 +104,7 @@ case
       when shop_operation_country='GB' then (
         case
           when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -112,7 +112,7 @@ case
       when shop_operation_country='BR' then (
         case
           when `latest_owner_calm_direct_first_split_sea` in ('Brazil','KA') then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -120,7 +120,7 @@ case
       when shop_operation_country='MX' then (
         case
           when `latest_owner_calm_direct_first_split_sea`in('Mexico','KA') then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -128,7 +128,7 @@ case
       when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
           when `latest_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
-          when `latest_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+          when `latest_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `latest_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -177,14 +177,14 @@ case
     CASE
       WHEN this_year_owner_calm_direct_first_split_sea='CNOB' THEN 'CNOB'
       WHEN this_year_owner_calm_direct_first_split_sea='KR' THEN 'KROB'
-      WHEN this_year_owner_calm_direct_first_split_sea='Scaled Growth' THEN 'Self Serve'
-      WHEN this_year_owner_calm_direct_first_split_sea IN('NA-Others','NA-Non Comm-L&S','NA-Non Comm-A&G','NA-Comm-Retail','NA-Comm-CPG','NA-CA') THEN 'NA-US'
+      WHEN this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+      WHEN this_year_owner_calm_direct_first_split_sea like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
   )
   when [Operation Region]='SEA' then (
     case
-      when this_year_owner_calm_direct_first_split_sea='Scaled Growth' then 'Self Serve'
+      when this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
       when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
       when  this_year_owner_calm_direct_first_split_sea in('MY','PH','VN','TH','SG','ID') then 'ENT'
       else 'Others'
@@ -195,7 +195,7 @@ case
       when shop_operation_country='JP' then (
         case
           when this_year_owner_calm_direct_first_split_sea='JP' then 'ENT'
-          when this_year_owner_calm_direct_first_split_sea='Scaled Growth' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -203,7 +203,7 @@ case
       when shop_operation_country='GB' then (
         case
           when this_year_owner_calm_direct_first_split_sea='EUI' then 'ENT'
-          when this_year_owner_calm_direct_first_split_sea='Scaled Growth' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -211,7 +211,7 @@ case
       when shop_operation_country='BR' then (
         case
           when this_year_owner_calm_direct_first_split_sea='Brazil' then 'ENT'
-          when this_year_owner_calm_direct_first_split_sea='Scaled Growth' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -219,7 +219,7 @@ case
       when shop_operation_country='MX' then (
         case
           when this_year_owner_calm_direct_first_split_sea='Mexico' then 'ENT'
-          when this_year_owner_calm_direct_first_split_sea='Scaled Growth' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -227,7 +227,7 @@ case
       when shop_operation_country in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
           when this_year_owner_calm_direct_first_split_sea='EUI' then 'ENT'
-          when this_year_owner_calm_direct_first_split_sea='Scaled Growth' then 'Self Serve'
+          when this_year_owner_calm_direct_first_split_seain ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when this_year_owner_calm_direct_first_split_sea='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -266,14 +266,14 @@ CASE
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
-      WHEN `owner_calm_direct_first_split_sea` IN ('NA-Others', 'NA-Non Comm-L&S', 'NA-Non Comm-A&G', 'NA-Comm-Retail', 'NA-Comm-CPG', 'NA-CA') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
 
   WHEN [operation_region] = 'SEA' THEN
     CASE
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID') THEN 'ENT'
       ELSE 'Others'
@@ -282,7 +282,7 @@ CASE
   WHEN `shop_operation_country` = 'JP' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'JP' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -290,7 +290,7 @@ CASE
   WHEN `shop_operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'EUI' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -298,7 +298,7 @@ CASE
   WHEN `shop_operation_country` = 'BR' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -306,7 +306,7 @@ CASE
   WHEN `shop_operation_country` = 'MX' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -341,14 +341,14 @@ CASE
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
-      WHEN `owner_calm_direct_first_split_sea` IN ('NA-Others', 'NA-Non Comm-L&S', 'NA-Non Comm-A&G', 'NA-Comm-Retail', 'NA-Comm-CPG', 'NA-CA') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
 
   WHEN [shop_operation_region] = 'SEA' THEN
     CASE
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID') THEN 'ENT'
       ELSE 'Others'
@@ -357,7 +357,7 @@ CASE
   WHEN `operation_country` = 'JP' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'JP' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -365,7 +365,7 @@ CASE
   WHEN `operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'EUI' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -373,7 +373,7 @@ CASE
   WHEN `operation_country` = 'BR' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -381,7 +381,7 @@ CASE
   WHEN `operation_country` = 'MX' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -416,14 +416,14 @@ case
       CASE
         WHEN [Latest Direct First Country Split SEA]='CNOB' THEN 'CNOB'
         WHEN [Latest Direct First Country Split SEA]='KR' THEN 'KROB'
-        WHEN [Latest Direct First Country Split SEA]='Scaled Growth' THEN 'Self Serve'
-        WHEN [Latest Direct First Country Split SEA] IN('NA-Others','NA-Non Comm-L&S','NA-Non Comm-A&G','NA-Comm-Retail','NA-Comm-CPG','NA-CA') THEN 'NA-US'
+        WHEN [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+        WHEN [Latest Direct First Country Split SEA] like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
   )
   when [shop_operation_region]='SEA' then (
       case
-        when [Latest Direct First Country Split SEA]='Scaled Growth' then 'Self Serve'
+        when [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
       when [Latest Direct First Country Split SEA]='CNOB' then 'CNOB'
         when [Latest Direct First Country Split SEA] in('MY','PH','VN','TH','SG','ID') then 'ENT'
       else 'Others'
@@ -434,7 +434,7 @@ case
       when `shop_operation_country`='JP' then (
         case
           when [Latest Direct First Country Split SEA]='JP' then 'ENT'
-            when [Latest Direct First Country Split SEA]='Scaled Growth' then 'Self Serve'
+            when [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when [Latest Direct First Country Split SEA]='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -442,7 +442,7 @@ case
       when `shop_operation_country`='GB' then (
         case
           when [Latest Direct First Country Split SEA]='EUI' then 'ENT'
-            when [Latest Direct First Country Split SEA]='Scaled Growth' then 'Self Serve'
+            when [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when [Latest Direct First Country Split SEA]='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -450,7 +450,7 @@ case
       when `shop_operation_country`='BR' then (
         case
           when [Latest Direct First Country Split SEA]='BR' then 'ENT'
-            when [Latest Direct First Country Split SEA]='Scaled Growth' then 'Self Serve'
+            when [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when [Latest Direct First Country Split SEA]='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -458,7 +458,7 @@ case
       when `shop_operation_country`='MX' then (
         case
           when [Latest Direct First Country Split SEA]='MX' then 'ENT'
-            WHEN [Latest Direct First Country Split SEA]='Scaled Growth' THEN 'Self Serve'
+            WHEN [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
           WHEN [Latest Direct First Country Split SEA]='CNOB' THEN 'CNOB'
           else 'Others'
         end
@@ -466,7 +466,7 @@ case
       when `shop_operation_country` in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
           when [Latest Direct First Country Split SEA]='EUI' then 'ENT'
-            when [Latest Direct First Country Split SEA]='Scaled Growth' then 'Self Serve'
+            when [Latest Direct First Country Split SEA]in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when [Latest Direct First Country Split SEA]='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -497,14 +497,14 @@ case
       CASE
         WHEN `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
         WHEN `dominant_adv_owner_calm_direct_first_split_sea`='KR' THEN 'KROB'
-        WHEN `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' THEN 'Self Serve'
-        WHEN `dominant_adv_owner_calm_direct_first_split_sea` IN('NA-Others','NA-Non Comm-L&S','NA-Non Comm-A&G','NA-Comm-Retail','NA-Comm-CPG','NA-CA') THEN 'NA-US'
+        WHEN `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+        WHEN `dominant_adv_owner_calm_direct_first_split_sea` like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
   )
   when `shop_operation_country` IN('MY','VN','TH','SG','ID','PH') then (
       case
-        when `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+        when `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
       when `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
         when `dominant_adv_owner_calm_direct_first_split_sea` IN('MY','VN','TH','SG','ID') then 'ENT'
       else 'Others'
@@ -515,7 +515,7 @@ case
       when `shop_operation_country`='JP' then (
         case
           when `dominant_adv_owner_calm_direct_first_split_sea`='JP' then 'ENT'
-            when `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+            when `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -523,7 +523,7 @@ case
       when `shop_operation_country`='GB' then (
         case
           when `dominant_adv_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
-            when `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+            when `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -531,7 +531,7 @@ case
       when `shop_operation_country`='BR' then (
         case
           when `dominant_adv_owner_calm_direct_first_split_sea`='BR' then 'ENT'
-            when `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+            when `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -539,7 +539,7 @@ case
       when `shop_operation_country`='MX' then (
         case
           when `dominant_adv_owner_calm_direct_first_split_sea`='MX' then 'ENT'
-            WHEN `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' THEN 'Self Serve'
+            WHEN `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
           WHEN `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' THEN 'CNOB'
           else 'Others'
         end
@@ -547,7 +547,7 @@ case
       when `shop_operation_country` in('DE', 'IT', 'ES', 'FR', 'IE') then (
         case
           when `dominant_adv_owner_calm_direct_first_split_sea`='EUI' then 'ENT'
-            when `dominant_adv_owner_calm_direct_first_split_sea`='Scaled Growth' then 'Self Serve'
+            when `dominant_adv_owner_calm_direct_first_split_sea`in ('Scaled Growth','SMB','Self Serve') then 'Self Serve'
           when `dominant_adv_owner_calm_direct_first_split_sea`='CNOB' then 'CNOB'
           else 'Others'
         end
@@ -675,14 +675,14 @@ CASE
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
-      WHEN `owner_calm_direct_first_split_sea` IN ('NA-Others', 'NA-Non Comm-L&S', 'NA-Non Comm-A&G', 'NA-Comm-Retail', 'NA-Comm-CPG', 'NA-CA') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
 
   WHEN `shop_operation_region` = 'SEA' THEN
     CASE
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID') THEN 'ENT'
       ELSE 'Others'
@@ -691,7 +691,7 @@ CASE
   WHEN `shop_operation_country` = 'JP' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'JP' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -699,7 +699,7 @@ CASE
   WHEN `shop_operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'EUI' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -707,7 +707,7 @@ CASE
   WHEN `shop_operation_country` = 'BR' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -715,7 +715,7 @@ CASE
   WHEN `shop_operation_country` = 'MX' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -729,14 +729,14 @@ CASE
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` = 'KR' THEN 'KROB'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
-      WHEN `owner_calm_direct_first_split_sea` IN ('NA-Others', 'NA-Non Comm-L&S', 'NA-Non Comm-A&G', 'NA-Comm-Retail', 'NA-Comm-CPG', 'NA-CA') THEN 'NA-US'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` like '%NA-%' THEN 'NA-US'
       ELSE 'Others'
     END
 
   WHEN [Operation Region] = 'SEA' THEN
     CASE
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       WHEN `owner_calm_direct_first_split_sea` IN ('MY', 'PH', 'VN', 'TH', 'SG', 'ID') THEN 'ENT'
       ELSE 'Others'
@@ -745,7 +745,7 @@ CASE
   WHEN `operation_country` = 'JP' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'JP' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -753,7 +753,7 @@ CASE
   WHEN `operation_country` IN ('GB', 'DE', 'IT', 'ES', 'FR', 'IE') THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` = 'EUI' THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -761,7 +761,7 @@ CASE
   WHEN `operation_country` = 'BR' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Brazil', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
@@ -769,7 +769,7 @@ CASE
   WHEN `operation_country` = 'MX' THEN
     CASE
       WHEN `owner_calm_direct_first_split_sea` IN ('Mexico', 'ENT') THEN 'ENT'
-      WHEN `owner_calm_direct_first_split_sea` = 'Scaled Growth' THEN 'Self Serve'
+      WHEN `owner_calm_direct_first_split_sea` in ('Scaled Growth','SMB','Self Serve') THEN 'Self Serve'
       WHEN `owner_calm_direct_first_split_sea` = 'CNOB' THEN 'CNOB'
       ELSE 'Others'
     END
